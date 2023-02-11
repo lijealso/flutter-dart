@@ -31,6 +31,8 @@ class _QuizPageState extends State<QuizPage> {
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.'
   ];
+  int questionIndex = 0;
+  List<bool> answers = [false, true, true];
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions[questionIndex],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -67,7 +69,17 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAnswer = answers[questionIndex];
+
+                if (correctAnswer == true) {
+                  print('User got it right!');
+                } else {
+                  print('User got it wrong.');
+                }
+
                 setState(() {
+                  questionIndex = questionIndex + 1;
+                  print(questionIndex);
                   scoreKeeper.add(Icon(
                     Icons.check,
                     color: Colors.green,
@@ -90,7 +102,22 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                bool correctAnswer = answers[questionIndex];
+
+                if (correctAnswer == false) {
+                  print('User got it right!');
+                } else {
+                  print('User got it wrong.');
+                }
+
+                setState(() {
+                  questionIndex = questionIndex + 1;
+                  print(questionIndex);
+                  scoreKeeper.add(Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                });
               },
             ),
           ),
