@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
+
+// new object
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -27,12 +30,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  List<Question> questionBank = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(q: 'Approximately one quarter of human bones are in the feet.', a: true),
-    Question(q: 'A slug\'s blood is green.', a: true)
-  ];
-  int questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionIndex].questionText.toString(),
+                quizBrain.getQuestionText().toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -70,9 +67,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool? correctAnswer =
-                    questionBank[questionIndex].questionAnswer;
-
+                bool? correctAnswer = quizBrain.getCorrectAnswer();
                 if (correctAnswer == true) {
                   print('User got it right!');
                 } else {
@@ -80,7 +75,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  questionIndex = questionIndex + 1;
+                  quizBrain.nextQuestion();
                   scoreKeeper.add(Icon(
                     Icons.check,
                     color: Colors.green,
@@ -104,8 +99,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool? correctAnswer =
-                    questionBank[questionIndex].questionAnswer;
+                bool? correctAnswer = quizBrain.getCorrectAnswer();
 
                 if (correctAnswer == true) {
                   print('User got it right!');
@@ -114,8 +108,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  questionIndex = questionIndex + 1;
-                  print(questionIndex);
+                  quizBrain.nextQuestion();
                   scoreKeeper.add(Icon(
                     Icons.check,
                     color: Colors.red,
@@ -132,9 +125,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
