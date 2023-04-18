@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const bottomContainerHeight = 80.0;
+const bottomContainerColor = Color(0xFFEB1555);
+const reusableCardColor = Color(0xFF1D1E33);
+
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
@@ -15,8 +19,69 @@ class _InputPageState extends State<InputPage> {
         centerTitle: true,
         title: const Text('BMI CALCULATOR'),
       ),
-      body: const Center(
-        child: Text('Body Text'),
+      body: Column(
+        children: <Widget>[
+          const Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(
+                    colour: reusableCardColor,
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    colour: reusableCardColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Expanded(
+            child: ReusableCard(
+              colour: reusableCardColor,
+            ),
+          ),
+          const Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(
+                    colour: reusableCardColor,
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    colour: reusableCardColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: bottomContainerColor,
+            margin: const EdgeInsets.only(top: 10),
+            width: double.infinity,
+            height: bottomContainerHeight,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  const ReusableCard({super.key, required this.colour});
+
+  final Color colour;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: colour,
       ),
     );
   }
