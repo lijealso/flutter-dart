@@ -1,76 +1,114 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_content.dart';
 import 'reusable_card.dart';
+import 'icon_content.dart';
 
 const bottomContainerHeight = 80.0;
-const bottomContainerColor = Color(0xFFEB1555);
-const reusableCardColor = Color(0xFF1D1E33);
+const activateCardColour = Color(0xFF1D1E33);
+const inactiveCardColour = Color(0xFF111328);
+const bottomContainerColour = Color(0xFFEB1555);
+enum Gender {male, female}
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
   @override
-  State<InputPage> createState() => _InputPageState();
+  _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColour = inactiveCardColour;
+  Color femaleCardColour = inactiveCardColour;
+
+  // 1 = male, 2 = female
+  void updateColour(Gender selectedGender) {
+    //male card pressed
+    if (selectedGender == Gender.male) {
+      if (maleCardColour == inactiveCardColour) {
+        maleCardColour = activateCardColour;
+        femaleCardColour = inactiveCardColour;
+      } else {
+        maleCardColour = inactiveCardColour;
+      }
+    }
+    //female card pressed
+    if (selectedGender == Gender.female) {
+      if (femaleCardColour == inactiveCardColour) {
+        femaleCardColour = activateCardColour;
+        maleCardColour = inactiveCardColour;
+      } else {
+        femaleCardColour = inactiveCardColour;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: const Text('BMI CALCULATOR'),
       ),
       body: Column(
-        children: <Widget>[
-          const Expanded(
+        children: [
+          Expanded(
             child: Row(
-              children: <Widget>[
+              children: [
                 Expanded(
-                  child: ReusableCard(
-                    colour: reusableCardColor,
-                    cardChild:
-                        IconContent(icon: FontAwesomeIcons.mars, label: 'MALE'),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        updateColour(Gender.male);
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: maleCardColour,
+                      cardChild: const IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    colour: reusableCardColor,
-                    cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus, label: 'FEMALE'),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        updateColour(Gender.female);
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: femaleCardColour,
+                      cardChild: const IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           const Expanded(
-            child: ReusableCard(
-              colour: reusableCardColor,
-            ),
+            child: ReusableCard(colour: activateCardColour),
           ),
           const Expanded(
             child: Row(
-              children: <Widget>[
+              children: [
                 Expanded(
-                  child: ReusableCard(
-                    colour: reusableCardColor,
-                  ),
+                  child: ReusableCard(colour: activateCardColour),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    colour: reusableCardColor,
-                  ),
+                  child: ReusableCard(colour: activateCardColour),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: bottomContainerColour,
             margin: const EdgeInsets.only(top: 10),
             width: double.infinity,
             height: bottomContainerHeight,
-          ),
+          )
         ],
       ),
     );
