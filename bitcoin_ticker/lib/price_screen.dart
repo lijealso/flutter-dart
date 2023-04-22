@@ -27,7 +27,9 @@ class _PriceScreenState extends State<PriceScreen> {
       onChanged: (value) {
         setState(() {
           selectedCurrency = value!;
-          getData();
+          getBitcoinData();
+          getEthereumData();
+          getLightcoinData();
         });
       },
     );
@@ -48,7 +50,9 @@ class _PriceScreenState extends State<PriceScreen> {
           //1: Save the selected currency to the property selectedCurrency
           selectedCurrency = currenciesList[selectedIndex];
           //2: Call getData() when the picker/dropdown changes.
-          getData();
+          getBitcoinData();
+          getEthereumData();
+          getEthereumData();
         });
       },
       children: pickerItems,
@@ -56,12 +60,36 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   String bitcoinValue = '?';
+  String ethereumValue = '?';
+  String lightcoinValue = '?';
 
-  void getData() async {
+  void getBitcoinData() async {
     try {
-      var data = await CoinData().getCoinData(selectedCurrency);
+      var data = await CoinData().getBitcoinData(selectedCurrency);
       setState(() {
         bitcoinValue = data;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void getEthereumData() async {
+    try {
+      var data = await CoinData().getEthereumData(selectedCurrency);
+      setState(() {
+        ethereumValue = data;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void getLightcoinData() async {
+    try {
+      var data = await CoinData().getLightcoinData(selectedCurrency);
+      setState(() {
+        lightcoinValue = data;
       });
     } catch (e) {
       print(e);
@@ -71,7 +99,9 @@ class _PriceScreenState extends State<PriceScreen> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getBitcoinData();
+    getEthereumData();
+    getLightcoinData();
   }
 
   @override
@@ -95,8 +125,50 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  //5: Update the currency name depending on the selectedCurrency.
                   '1 BTC = $bitcoinValue $selectedCurrency',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+            child: Card(
+              color: Colors.lightBlueAccent,
+              elevation: 5.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+                child: Text(
+                  '1 ETH = $ethereumValue $selectedCurrency',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+            child: Card(
+              color: Colors.lightBlueAccent,
+              elevation: 5.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+                child: Text(
+                  //5: Update the currency name depending on the selectedCurrency.
+                  '1 LTC = $lightcoinValue $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
