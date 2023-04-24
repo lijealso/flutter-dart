@@ -39,8 +39,8 @@ class _QuizPageState extends State<QuizPage> {
       if (quizBrain.isFinished() == true) {
         Alert(
                 context: context,
-                title: "The Quiz is Finished...",
-                desc: "You've reached the end of the quiz...")
+                title: 'The Quiz is Finished...',
+                desc: 'You\'ve reached the end of the quiz...')
             .show();
         quizBrain.reset();
         scoreKeeper.clear();

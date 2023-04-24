@@ -7,7 +7,7 @@ void main() {
   myTesla.recharge();
   LevitatingCar myMagLev = LevitatingCar();
   myMagLev.drive();
-  SelfDrivingCar myWaymo = SelfDrivingCar("1 Hacker Way");
+  SelfDrivingCar myWaymo = SelfDrivingCar('1 Hacker Way');
   myWaymo.drive();
 }
 
@@ -15,7 +15,7 @@ class Car {
   int numberOfSeats = 5;
 
   void drive() {
-    print("wheels turn...");
+    print('wheels turn...');
   }
 }
 
@@ -30,7 +30,7 @@ class ElectricCar extends Car {
 class LevitatingCar extends Car {
   @override
   void drive() {
-    print("Glide forward...");
+    print('Glide forward...');
   }
 }
 
