@@ -7,7 +7,7 @@ void main() {
       home: Scaffold(
         backgroundColor: Colors.lightBlue,
         appBar: AppBar(
-          title: Text('As Me Anything'),
+          title: const Text('As Me Anything'),
           backgroundColor: Colors.blue,
         ),
         body: AskMe(),
@@ -17,8 +17,10 @@ void main() {
 }
 
 class AskMe extends StatefulWidget {
+  const AskMe({super.key});
+
   @override
-  _AskMeState createState() => _AskMeState();
+  State<AskMe> createState() => _AskMeState();
 }
 
 class _AskMeState extends State<AskMe> {
