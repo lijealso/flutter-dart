@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBKo8F4Mg2NTA_tL49pCEajP8A17-93aI8',
-    appId: '1:784695021768:android:7aaa90773f03997d58d5fd',
+    appId: '1:784695021768:android:29b9294543d0999858d5fd',
     messagingSenderId: '784695021768',
     projectId: 'flash-chat-88a6a',
     storageBucket: 'flash-chat-88a6a.appspot.com',

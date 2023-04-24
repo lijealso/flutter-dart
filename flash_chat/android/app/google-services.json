@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:784695021768:android:7aaa90773f03997d58d5fd",
+        "mobilesdk_app_id": "1:784695021768:android:29b9294543d0999858d5fd",
         "android_client_info": {
-          "package_name": "com.example.flash_chat"
+          "package_name": "pt.lijealso.flash_chat"
         }
       },
       "oauth_client": [
