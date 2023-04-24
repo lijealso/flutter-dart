@@ -1,6 +1,6 @@
 void main() {
-  const int myConst = 2;
-  final int myFinal = 3;
+  // const int myConst = 2;
+  // final int myFinal = 3;
 
   // can´t assign a new value because it is const
   // myConst = 4;

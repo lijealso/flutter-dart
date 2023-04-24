@@ -1,6 +1,6 @@
 void main() {
   myMap['James'] = 111111111;
-  print(myMap['James']);
+  // print(myMap['James']);
 }
 
 Map<String, int> myMap = {

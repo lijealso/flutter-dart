@@ -11,10 +11,10 @@ String loveCalculator() {
   print(loveScore);
 
   if (loveScore > 70) {
-    return "You love each other like Kanye loves Kanye";
+    return 'You love each other like Kanye loves Kanye';
   } else if (loveScore >= 50) {
-    return "You like each other";
+    return 'You like each other';
   } else {
-    return "You don't like each other";
+    return 'You don\'t like each other';
   }
 }
