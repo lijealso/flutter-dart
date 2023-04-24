@@ -1,6 +1,6 @@
 void main() {
   Car myNormalCar = Car();
-  print(myNormalCar.numberOfSeats);
+  // print(myNormalCar.numberOfSeats);
   myNormalCar.drive();
   ElectricCar myTesla = ElectricCar();
   myTesla.drive();
@@ -15,7 +15,7 @@ class Car {
   int numberOfSeats = 5;
 
   void drive() {
-    print('wheels turn...');
+    // print('wheels turn...');
   }
 }
 
@@ -30,7 +30,7 @@ class ElectricCar extends Car {
 class LevitatingCar extends Car {
   @override
   void drive() {
-    print('Glide forward...');
+    // print('Glide forward...');
   }
 }
 
@@ -42,9 +42,11 @@ class SelfDrivingCar extends Car {
     destination = userSetDestination;
   }
 
+/*
   @override
   void drive() {
     super.drive();
-    print('Sterring towards $destination');
+    // print('Sterring towards $destination');
   }
+  */
 }

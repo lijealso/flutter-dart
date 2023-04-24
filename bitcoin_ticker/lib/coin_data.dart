@@ -41,10 +41,10 @@ class CoinData {
     http.Response response = await http.get(Uri.parse(requestURL));
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
-      int lastPriceBitcoin = decodedData['bitcoin']['$currency'];
+      int lastPriceBitcoin = decodedData['bitcoin']['currency'];
       return lastPriceBitcoin.toStringAsFixed(0);
     } else {
-      print(response.statusCode);
+      // print(response.statusCode);
       throw 'Problem with the get request';
     }
   }
@@ -56,10 +56,11 @@ class CoinData {
     http.Response response = await http.get(Uri.parse(requestURL));
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
+      // ignore: unnecessary_string_interpolations
       double lastPriceEthereum = decodedData['ethereum']['$currency'];
       return lastPriceEthereum.toStringAsFixed(0);
     } else {
-      print(response.statusCode);
+      // print(response.statusCode);
       throw 'Problem with the get request';
     }
   }
@@ -71,10 +72,11 @@ class CoinData {
     http.Response response = await http.get(Uri.parse(requestURL));
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
+      // ignore: unnecessary_string_interpolations
       double lastPriceLightcoin = decodedData['lightcoin']['$currency'];
       return lastPriceLightcoin.toStringAsFixed(8);
     } else {
-      print(response.statusCode);
+      // print(response.statusCode);
       throw 'Problem with the get request';
     }
   }

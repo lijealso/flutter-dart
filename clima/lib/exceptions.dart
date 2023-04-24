@@ -1,10 +1,10 @@
 void main() {
-  String myString = 'abc';
+  // String myString = 'abc';
 
   try {
-    double myStringAsDouble = double.parse(myString);
-    print(myStringAsDouble);
-  } catch (Error) {
-    print(Error);
+    // double myStringAsDouble = double.parse(myString);
+    // print(myStringAsDouble);
+  } catch (e) {
+    // print(Error);
   }
 }

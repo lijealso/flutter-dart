@@ -7,18 +7,20 @@ void main() {
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text('Dicee'),
+          title: const Text('Dicee'),
           backgroundColor: Colors.red,
         ),
-        body: DicePage(),
+        body: const DicePage(),
       ),
     ),
   );
 }
 
 class DicePage extends StatefulWidget {
+  const DicePage({super.key});
+
   @override
-  _DicePageState createState() => _DicePageState();
+  State<DicePage> createState() => _DicePageState();
 }
 
 class _DicePageState extends State<DicePage> {

@@ -1,9 +1,9 @@
 void main() {
-  Human jenny = Human(15, 3.5);
-  print(jenny.height);
+  // Human jenny = Human(15, 3.5);
+  // print(jenny.height);
 
   Human james = Human(20, 4.2);
-  print(james.height);
+  // print(james.height);
 
   james.talk(whatToSay: 'Why is the sky blue?');
 }
@@ -19,6 +19,6 @@ class Human {
 
   // method
   void talk({required String whatToSay}) {
-    print(whatToSay);
+    // print(whatToSay);
   }
 }

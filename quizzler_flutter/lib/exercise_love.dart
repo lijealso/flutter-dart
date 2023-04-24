@@ -2,13 +2,13 @@
 
 // This is a simple Love Calculator
 void main() {
-  print(loveCalculator());
+  // print(loveCalculator());
 }
 
 String loveCalculator() {
   int loveScore = Random().nextInt(100) + 1;
 
-  print(loveScore);
+  // print(loveScore);
 
   if (loveScore > 70) {
     return 'You love each other like Kanye loves Kanye';

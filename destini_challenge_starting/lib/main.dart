@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'story_brain.dart';
 
-void main() => runApp(Destini());
+void main() => runApp(const Destini());
 
 class Destini extends StatelessWidget {
+  const Destini({super.key});
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: StoryPage(),
+      home: const StoryPage(),
     );
   }
 }
@@ -15,7 +18,10 @@ class Destini extends StatelessWidget {
 StoryBrain storyBrain = StoryBrain();
 
 class StoryPage extends StatefulWidget {
-  _StoryPageState createState() => _StoryPageState();
+  const StoryPage({super.key});
+
+  @override
+  State<StoryPage> createState() => _StoryPageState();
 }
 
 class _StoryPageState extends State<StoryPage> {
@@ -23,14 +29,14 @@ class _StoryPageState extends State<StoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage('images/background.png'),
               alignment: Alignment.center),
         ),
-        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
-        constraints: BoxConstraints.expand(),
+        padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,7 +46,7 @@ class _StoryPageState extends State<StoryPage> {
                 child: Center(
                   child: Text(
                     storyBrain.getStory(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 25.0,
                     ),
                   ),
@@ -53,7 +59,7 @@ class _StoryPageState extends State<StoryPage> {
                       backgroundColor: MaterialStateProperty.all(Colors.red)),
                   child: Text(
                     storyBrain.getChoice1(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,
                     ),
@@ -65,7 +71,7 @@ class _StoryPageState extends State<StoryPage> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Expanded(
@@ -77,7 +83,7 @@ class _StoryPageState extends State<StoryPage> {
                         backgroundColor: MaterialStateProperty.all(Colors.blue)),
                     child: Text(
                       storyBrain.getChoice2(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
                       ),
