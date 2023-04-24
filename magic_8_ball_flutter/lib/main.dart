@@ -10,7 +10,7 @@ void main() {
           title: const Text('As Me Anything'),
           backgroundColor: Colors.blue,
         ),
-        body: AskMe(),
+        body: const AskMe(),
       ),
     ),
   );
