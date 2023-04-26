@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import '../widgets/tasks_list.dart';
 import '../screens/add_task_screen.dart';
-import '../models/task.dart';
+import 'package:provider/provider.dart';
+import '../models/task_data.dart';
 
 class TasksScreen extends StatefulWidget {
-  const TasksScreen({super.key});
+  const TasksScreen({Key? key}) : super(key: key);
 
   @override
   State<TasksScreen> createState() => _TasksScreenState();
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [];
+  bool _value = false;
+
+  Widget buildBottomSheet(BuildContext context) {
+    return AddTaskScreen(
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +26,15 @@ class _TasksScreenState extends State<TasksScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-              context: context,
-              builder: (context) => AddTaskScreen((newTaskTitle) {
-                    setState(() {
-                      tasks.add(Task(name: '$newTaskTitle'));
-                      Navigator.pop(context);
-                    });
-                  }));
+            isScrollControlled: true,
+            context: context,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: buildBottomSheet(context)),
+            ),
+          );
         },
         backgroundColor: Colors.lightBlueAccent,
         child: const Icon(Icons.add),
@@ -39,7 +47,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30.0,
@@ -53,26 +61,24 @@ class _TasksScreenState extends State<TasksScreen> {
                   height: 10.0,
                 ),
                 const Text(
-                  'Todoey',
+                  "ToDo",
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.w700,
-                  ),
+                      color: Colors.white,
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '${tasks.length} tasks',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                )
+                  "${Provider.of<TaskData>(context).taskCount} Tasks",
+                  style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                ),
               ],
             ),
           ),
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              // color: Colors.white,
+              //height: 300.0,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -80,9 +86,13 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(tasks),
+              child: Expanded(
+                child: TasksList(
+                    //tasks: Provider.of<TaskData>(context).tasks,
+                    ),
+              ),
             ),
-          ),
+          )
         ],
       ),
     );

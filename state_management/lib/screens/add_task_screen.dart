@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management_examples/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallback;
+  // const AddTaskScreen({ Key? key }) : super(key: key);
 
-  const AddTaskScreen(this.addTaskCallback, {super.key});
+  late String newTaskTitle;
+  // late final Function addTaskCallback;
+  // AddTaskScreen(this.addTaskCallback);
 
   @override
   Widget build(BuildContext context) {
-    String? newTaskTitle;
-
     return Container(
-      color: const Color(0xFF575757),
+      color: const Color(0xff757575),
       child: Container(
-        padding: const EdgeInsets.all(20.0),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -21,39 +22,67 @@ class AddTaskScreen extends StatelessWidget {
           ),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const Text(
-              'Add Task',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30.0,
-                color: Colors.lightBlueAccent,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    "Add Task",
+                    style: TextStyle(
+                        color: Colors.lightBlueAccent, fontSize: 30.0),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(
+                            // border: InputBorder.none,
+                            // labelText: 'Enter Task',
+                            hintText: 'Enter Task'),
+                        autofocus: true,
+                        onChanged: (newText) {
+                          newTaskTitle = newText;
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            TextField(
-              autofocus: true,
-              textAlign: TextAlign.center,
-              onChanged: (newText) {
-                newTaskTitle = newText;
-              },
-            ),
-            const SizedBox(
-              height: 24.0,
-            ),
-            TextButton(
-              style: ButtonStyle(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: TextButton(
+                style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(Colors.lightBlueAccent)),
-              onPressed: () {
-                addTaskCallback(newTaskTitle);
-            
-              },
-              child: const Text(
-                'Add',
-                style: TextStyle(color: Colors.white),
+                      MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                ),
+                onPressed: () {
+                  Provider.of<TaskData>(context, listen: false)
+                      .addTask(newTaskTitle);
+                  // final task = Task(name: newTaskTitle);
+                  //  addTaskCallback(newTaskTitle);
+                  Navigator.pop(context);
+                  // addTaskCallback(newTaskTitle);
+                  // print(newTaskTitle);
+                },
+                child: const Center(
+                    child: Text(
+                  "Add",
+                  style: TextStyle(color: Colors.white),
+                )),
               ),
-            ),
+            )
           ],
         ),
       ),

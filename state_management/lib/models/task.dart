@@ -1,8 +1,8 @@
 class Task {
-  String? name;
+  String name;
   bool isDone;
 
-  Task({this.name, this.isDone = false});
+  Task({required this.name, this.isDone = false});
 
   void toogleDone() {
     isDone = !isDone;
